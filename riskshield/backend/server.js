@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -27,6 +28,13 @@ app.get('/api/health', (req, res) => res.json({ status: 'RiskShield API Running'
 
 app.get('/', (req, res) => {
   res.send('RiskShield Backend Running Successfully 🚀');
+});
+
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 // Connect to MongoDB
