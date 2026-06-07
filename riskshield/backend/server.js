@@ -22,6 +22,10 @@ app.use('/api/weather', require('./routes/weather'));
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'RiskShield API Running' }));
 
+app.get('/', (req, res) => {
+  res.send('RiskShield Backend Running Successfully 🚀');
+});
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
